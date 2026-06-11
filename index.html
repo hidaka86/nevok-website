@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>株式会社NEVOK｜ジョウネツ — 足で稼ぐ、リアルマーケティング</title>
+<meta name="description" content="飲食店の商圏500mを、足で熱くする。早朝チラシ配り・法人訪問営業のジョウネツ。SNSでは届かない人に、人の熱で直接届ける地域密着マーケティング。">
+<meta property="og:title" content="株式会社NEVOK｜ジョウネツ">
+<meta property="og:description" content="飲食店の商圏500mを、足で熱くする。リアルマーケティングの実行役。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@500;700&family=Reggae+One&family=Yuji+Syuku&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0a08;
+  --bg2:#171210;
+  --fire:#ff4d1c;
+  --fire2:#ff8a00;
+  --amber:#ffb347;
+  --white:#fdf6ef;
+  --grey:#b8a99d;
+  --line:rgba(255,138,0,.18);
+  --grad:linear-gradient(135deg,#ff4d1c 0%,#ff8a00 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans JP',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.85;
+  overflow-x:hidden;
+  font-size:15px;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+section{padding:72px 24px;position:relative}
+.inner{max-width:680px;margin:0 auto}
+
+/* ===== utility ===== */
+.en{font-family:'Oswald',sans-serif;letter-spacing:.14em}
+.label{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.3em;
+  color:var(--fire2);text-transform:uppercase;margin-bottom:18px;
+}
+.label::before{content:"";width:28px;height:2px;background:var(--grad)}
+h2{
+  font-size:clamp(26px,7vw,40px);font-weight:900;line-height:1.4;
+  margin-bottom:24px;letter-spacing:.02em;
+}
+h2 .hot{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.lead{color:var(--grey);font-size:15px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.on{opacity:1;transform:none}
+
+/* ===== brush type & fire gimmicks ===== */
+.brush{font-family:'Reggae One',serif;font-weight:400;letter-spacing:.04em}
+.fude{font-family:'Yuji Syuku',serif;font-weight:400}
+.brush-fire{
+  font-family:'Reggae One',serif;font-weight:400;letter-spacing:.04em;
+  background:linear-gradient(0deg,#ff2d00 0%,#ff6a00 40%,#ffb347 75%,#ffe27a 100%);
+  background-size:100% 240%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:flame-shimmer 2.4s ease-in-out infinite alternate;
+}
+@keyframes flame-shimmer{
+  0%{background-position:50% 100%}
+  100%{background-position:50% 0%}
+}
+.yura{display:inline-block;animation:yura 3.2s ease-in-out infinite;transform-origin:50% 100%;will-change:transform}
+@keyframes yura{
+  0%,100%{transform:skewX(0deg) scaleY(1)}
+  25%{transform:skewX(1.4deg) scaleY(1.015)}
+  55%{transform:skewX(-1.1deg) scaleY(.995)}
+  80%{transform:skewX(.7deg) scaleY(1.008)}
+}
+.glow{filter:drop-shadow(0 0 16px rgba(255,110,0,.5));animation:glow-pulse 2.4s ease-in-out infinite alternate}
+@keyframes glow-pulse{
+  0%{filter:drop-shadow(0 0 8px rgba(255,90,0,.35))}
+  100%{filter:drop-shadow(0 4px 22px rgba(255,150,0,.7))}
+}
+
+/* embers (火の粉) */
+.embers{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.embers i{
+  position:absolute;bottom:-12px;width:5px;height:5px;border-radius:50%;
+  background:radial-gradient(circle,#ffe27a 0%,#ff8a00 45%,#ff4d1c 75%,transparent 100%);
+  opacity:0;animation:ember-rise linear infinite;will-change:transform,opacity;
+}
+@keyframes ember-rise{
+  0%{transform:translate3d(0,0,0) scale(1);opacity:0}
+  8%{opacity:.95}
+  60%{opacity:.7}
+  100%{transform:translate3d(var(--sway,30px),-92vh,0) scale(.15);opacity:0}
+}
+.embers i:nth-child(1){left:8%;animation-duration:6.5s;animation-delay:0s;--sway:38px}
+.embers i:nth-child(2){left:22%;animation-duration:8s;animation-delay:1.6s;--sway:-26px;width:4px;height:4px}
+.embers i:nth-child(3){left:35%;animation-duration:7.2s;animation-delay:3.1s;--sway:50px}
+.embers i:nth-child(4){left:48%;animation-duration:9s;animation-delay:.8s;--sway:-40px;width:3px;height:3px}
+.embers i:nth-child(5){left:60%;animation-duration:6.8s;animation-delay:2.4s;--sway:24px}
+.embers i:nth-child(6){left:72%;animation-duration:8.6s;animation-delay:4.2s;--sway:-32px;width:4px;height:4px}
+.embers i:nth-child(7){left:84%;animation-duration:7.6s;animation-delay:1.2s;--sway:42px}
+.embers i:nth-child(8){left:93%;animation-duration:9.4s;animation-delay:3.6s;--sway:-20px;width:3px;height:3px}
+
+/* marker underline (スッと引かれる蛍光マーカー) */
+.uline{
+  background-image:linear-gradient(transparent 58%,rgba(255,122,0,.5) 58%,rgba(255,77,28,.45) 94%,transparent 94%);
+  background-size:0% 100%;background-repeat:no-repeat;background-position:0 100%;
+  transition:background-size 1s cubic-bezier(.22,1,.36,1) .4s;
+}
+.reveal.on .uline,.uline.on{background-size:100% 100%}
+
+/* 朱印スタンプ */
+.stamp{
+  position:absolute;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  width:78px;height:96px;border:3px solid #e6321a;border-radius:8px;
+  color:#ff3b1f;font-family:'Yuji Syuku',serif;font-size:32px;line-height:1.1;
+  writing-mode:vertical-rl;letter-spacing:.1em;
+  box-shadow:inset 0 0 0 1px rgba(230,50,26,.4);
+  transform:rotate(6deg) scale(2.4);opacity:0;
+  pointer-events:none;
+}
+.stamp.on{animation:stamp-in .5s cubic-bezier(.3,1.6,.5,1) .55s forwards}
+@keyframes stamp-in{
+  0%{transform:rotate(6deg) scale(2.4);opacity:0}
+  55%{opacity:1}
+  100%{transform:rotate(-8deg) scale(1);opacity:.9}
+}
+
+/* 縦書き */
+.tategaki{
+  writing-mode:vertical-rl;display:inline-block;
+  font-family:'Yuji Syuku',serif;font-weight:400;
+  text-align:initial;line-height:1.9;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .brush-fire,.yura,.glow,.embers i{animation:none!important}
+  .reveal{transition:none;opacity:1;transform:none}
+}
+
+/* ===== header ===== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;
+  background:rgba(13,10,8,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,138,0,.12);
+}
+.logo{font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;letter-spacing:.18em}
+.logo span{color:var(--fire)}
+.cta-mini{
+  font-size:12px;font-weight:700;padding:9px 18px;border-radius:999px;
+  background:var(--grad);color:#fff;letter-spacing:.08em;
+  box-shadow:0 4px 18px rgba(255,77,28,.4);
+}
+
+/* ===== hero ===== */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:110px 24px 64px;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 110%,rgba(255,77,28,.28),transparent 60%),
+    linear-gradient(180deg,rgba(13,10,8,.5) 0%,rgba(13,10,8,.42) 38%,rgba(13,10,8,.78) 72%,#0d0a08 100%),
+    url('img/hero.jpg') center 28%/cover no-repeat,
+    var(--bg);
+  overflow:hidden;
+}
+.hero::after{
+  content:"JOUNETSU";
+  position:absolute;bottom:6px;left:50%;transform:translateX(-50%);
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:21vw;
+  letter-spacing:.04em;line-height:1;white-space:nowrap;
+  color:transparent;-webkit-text-stroke:1px rgba(255,138,0,.14);
+  pointer-events:none;
+}
+.hero-tag{
+  font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.32em;
+  color:var(--fire2);margin-bottom:20px;text-transform:uppercase;
+}
+.hero h1{
+  font-family:'Reggae One',serif;font-weight:400;
+  font-size:clamp(36px,10.5vw,68px);line-height:1.38;
+  letter-spacing:.02em;margin-bottom:24px;
+}
+.hero .stamp{top:96px;right:18px}
+@media(min-width:768px){.hero .stamp{top:140px;right:10%}}
+.hero h1 .fire{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.hero p{color:var(--grey);font-size:15px;max-width:34em;margin-bottom:36px}
+.hero p strong{color:var(--white)}
+.hero-ctas{display:flex;flex-direction:column;gap:14px;max-width:360px}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-weight:700;font-size:15px;letter-spacing:.06em;
+  padding:17px 28px;border-radius:999px;transition:transform .2s,box-shadow .2s;
+}
+.btn-fire{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(255,77,28,.45)}
+.btn-fire:active{transform:scale(.97)}
+.btn-ghost{border:1px solid rgba(255,246,239,.3);color:var(--white)}
+.btn .arrow{font-family:'Oswald',sans-serif}
+
+/* ===== problem ===== */
+.problem{background:var(--bg2)}
+.problem-card{
+  border:1px solid var(--line);border-radius:18px;padding:26px 22px;margin-top:8px;
+  background:rgba(13,10,8,.5);
+}
+.problem-card+.problem-card{margin-top:14px}
+.problem-card h3{font-size:17px;font-weight:700;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
+.problem-card h3::before{content:"✕";color:var(--fire);font-weight:900;flex-shrink:0}
+.problem-card p{color:var(--grey);font-size:14px}
+.problem-answer{
+  margin-top:36px;text-align:center;
+  font-size:clamp(20px,5.6vw,30px);font-weight:900;line-height:1.6;
+}
+.problem-answer .hot{
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* ===== mission ===== */
+.mission{
+  text-align:center;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% 0%,rgba(255,77,28,.12),transparent 60%),
+    var(--bg);
+}
+.mission blockquote{
+  font-size:clamp(24px,6.6vw,38px);font-weight:900;line-height:1.7;margin:18px 0 26px;
+}
+.mission blockquote em{
+  font-style:normal;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.mission p{color:var(--grey);text-align:left;max-width:36em;margin:0 auto}
+.mission p+p{margin-top:1em}
+.mission p strong{color:var(--white)}
+
+/* ===== services ===== */
+.svc-card{
+  border-radius:20px;overflow:hidden;border:1px solid var(--line);
+  background:var(--bg2);margin-top:26px;
+}
+.svc-photo{
+  aspect-ratio:16/10;overflow:hidden;background:#1c1410;position:relative;
+}
+.svc-photo img{
+  width:100%;height:100%;object-fit:cover;
+  transform:scale(1.04);transition:transform 6s ease;
+}
+.svc-card.on .svc-photo img{transform:scale(1)}
+.svc-photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(13,10,8,.55) 100%);
+  pointer-events:none;
+}
+.svc-body{padding:24px 22px 28px}
+.svc-num{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;
+  color:var(--fire2);letter-spacing:.3em;margin-bottom:6px;
+}
+.svc-body h3{font-size:21px;font-weight:900;margin-bottom:10px;line-height:1.5}
+.svc-body p{color:var(--grey);font-size:14px}
+.svc-points{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.svc-points li{
+  list-style:none;font-size:13.5px;display:flex;gap:9px;align-items:baseline;color:var(--white);
+}
+.svc-points li::before{content:"━";color:var(--fire);font-weight:700;flex-shrink:0}
+
+/* ===== results ===== */
+.results{background:var(--bg2)}
+.result-photo{
+  position:relative;border-radius:18px;overflow:hidden;margin:26px 0 8px;
+  border:1px solid var(--line);
+}
+.result-photo img{width:100%;display:block}
+.result-photo figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:34px 18px 12px;font-size:12px;color:rgba(253,246,239,.85);letter-spacing:.08em;
+  background:linear-gradient(180deg,transparent,rgba(13,10,8,.85));
+}
+.result-card{
+  border-radius:18px;border:1px solid var(--line);padding:26px 22px;
+  background:rgba(13,10,8,.55);margin-top:18px;
+}
+.result-card .result-meta{font-size:12px;color:var(--fire2);letter-spacing:.12em;margin-bottom:10px;font-weight:700}
+.result-card .result-big{
+  font-size:clamp(24px,7vw,34px);font-weight:900;line-height:1.45;margin-bottom:10px;color:var(--white);
+}
+.result-big .hot{
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+.result-card p{color:var(--grey);font-size:13.5px}
+
+/* ===== reasons ===== */
+.reason{display:flex;gap:18px;margin-top:30px;align-items:flex-start}
+.reason-num{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:40px;line-height:1;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;flex-shrink:0;
+  min-width:52px;
+}
+.reason h3{font-size:18px;font-weight:900;margin-bottom:8px;line-height:1.5}
+.reason p{color:var(--grey);font-size:14px}
+
+/* ===== philosophy ===== */
+.philosophy{
+  text-align:center;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% 100%,rgba(255,77,28,.16),transparent 65%),
+    var(--bg);
+}
+.philosophy .big{
+  font-size:clamp(26px,7.4vw,42px);font-weight:900;line-height:1.7;margin:14px 0 28px;
+  text-align:center!important;
+}
+.philosophy .big em{
+  font-style:normal;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+/* iOS Safariは縦書き+background-clip:textで文字が描画されないため、単色+発光にフォールバック */
+.philosophy .big .tategaki em{
+  background:none;animation:none;
+  color:var(--fire2);-webkit-text-fill-color:var(--fire2);
+  text-shadow:0 0 24px rgba(255,110,0,.45);
+}
+.philosophy p{color:var(--grey);text-align:left;max-width:36em;margin:0 auto}
+.philosophy p+p{margin-top:1em}
+.philosophy p strong{color:var(--white)}
+
+/* ===== flow ===== */
+.flow-step{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px 0;border-bottom:1px solid rgba(255,138,0,.12);
+}
+.flow-step:last-child{border-bottom:none}
+.flow-num{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--grad);font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;color:#fff;
+}
+.flow-step h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.flow-step p{color:var(--grey);font-size:13.5px}
+
+/* ===== contact ===== */
+.contact{
+  background:var(--grad);color:#1a0d05;text-align:center;
+  border-radius:28px 28px 0 0;
+}
+.contact h2{color:#fff}
+.contact .lead{color:rgba(255,255,255,.92);margin-bottom:30px}
+.contact .btn-dark{
+  background:#14100d;color:#fff;max-width:360px;margin:0 auto 14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+.contact .tel{
+  display:block;font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;
+  letter-spacing:.06em;color:#fff;margin-top:18px;
+}
+.contact .tel-note{font-size:12px;color:rgba(255,255,255,.85)}
+
+/* ===== recruit ===== */
+.recruit{background:var(--bg2);text-align:center}
+.recruit p{color:var(--grey);max-width:32em;margin:0 auto 28px;text-align:left}
+.recruit .btn-ghost{max-width:360px;margin:0 auto}
+
+/* ===== footer ===== */
+footer{padding:48px 24px 110px;border-top:1px solid rgba(255,138,0,.12)}
+footer .logo{font-size:20px;margin-bottom:20px}
+.foot-info{font-size:13px;color:var(--grey);line-height:2.1}
+.foot-links{margin-top:24px;display:flex;flex-wrap:wrap;gap:18px;font-size:12px;color:var(--grey)}
+.copy{margin-top:28px;font-size:11px;color:rgba(184,169,157,.6)}
+
+/* ===== fixed bottom CTA (mobile) ===== */
+.bottom-cta{
+  position:fixed;bottom:0;left:0;right:0;z-index:90;
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(13,10,8,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,138,0,.15);
+  display:flex;gap:10px;
+}
+.bottom-cta .btn{flex:1;padding:14px 10px;font-size:14px}
+.bottom-cta .btn-tel{
+  flex:0 0 auto;width:52px;border-radius:14px;border:1px solid rgba(255,246,239,.3);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+
+/* ===== desktop ===== */
+@media(min-width:768px){
+  body{font-size:16px}
+  section{padding:110px 32px}
+  .inner{max-width:880px}
+  .hero{padding:160px 32px 100px}
+  .hero-ctas{flex-direction:row;max-width:none}
+  .hero-ctas .btn{min-width:240px}
+  .svc-card{display:grid;grid-template-columns:1fr 1fr}
+  .svc-photo{aspect-ratio:auto;height:100%}
+  .svc-card:nth-child(even) .svc-photo{order:2}
+  .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .result-card{margin-top:0}
+  .results-grid{margin-top:26px}
+  .bottom-cta{display:none}
+  footer{padding-bottom:48px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">NEVOK<span>.</span></a>
+  <a class="cta-mini" href="#contact">無料相談</a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="embers"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <span class="stamp">情熱</span>
+  <div class="inner">
+    <p class="hero-tag">Real Marketing — Jounetsu</p>
+    <h1>その熱意、<br><span class="brush-fire yura glow">街中に</span>届けます。</h1>
+    <p>SNSの「いいね」では、お店の前に行列はできない。<br>
+    私たちは<strong>商圏500mを足で回り、人の熱で直接お客様を連れてくる</strong>、飲食店のためのリアルマーケティング集団です。</p>
+    <div class="hero-ctas">
+      <a class="btn btn-fire" href="#contact">無料で相談する <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="#results">導入実績を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="problem">
+  <div class="inner">
+    <p class="label reveal">Problem</p>
+    <h2 class="reveal">こんな悔しさ、<br>ありませんか。</h2>
+    <div class="problem-card reveal">
+      <h3>味には自信があるのに、知られていない</h3>
+      <p>どんなに美味しくても、存在を知らない人は来店できません。開店から数ヶ月、近所の人にすら知られていないお店は驚くほど多いのです。</p>
+    </div>
+    <div class="problem-card reveal">
+      <h3>SNSを頑張っても、来店につながらない</h3>
+      <p>フォロワーの多くは商圏の外。画面の中の「いいね」は、ランチタイムの一席を埋めてくれません。</p>
+    </div>
+    <div class="problem-card reveal">
+      <h3>営業に割く時間も、人手もない</h3>
+      <p>仕込み・接客・経営。店主のあなたが外に出て宣伝する時間は、現実的にありません。</p>
+    </div>
+    <p class="problem-answer reveal">だから私たちが、<br><span class="brush-fire">あなたの代わりに走ります。</span></p>
+  </div>
+</section>
+
+<!-- ============ MISSION ============ -->
+<section class="mission">
+  <div class="inner">
+    <p class="label reveal" style="justify-content:center">Mission</p>
+    <blockquote class="reveal fude">地域をお店と共に<br><em class="fude">情熱的に熱くする。</em></blockquote>
+    <p class="reveal">人は、五感で受け取った情報を長く記憶します。手渡されたチラシの温度、目を見て語られた一言。<span class="uline"><strong>画面越しの広告には決して出せない「人の熱」</strong></span>こそが、人の心を動かし、足を運ばせる。</p>
+    <p class="reveal">私たちNEVOKは、その信念のもと、デジタル全盛の時代にあえて「足で稼ぐ」マーケティングを貫いています。</p>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="inner">
+    <p class="label reveal">Service</p>
+    <h2 class="reveal">やることはシンプル。<br><span class="brush-fire">本気で、直接、伝える。</span></h2>
+    <p class="lead reveal">ジョウネツのサービスは、お店の商圏──半径500m以内に集中投下するのが特徴です。来られる距離にいる人だけに、全力で伝えます。</p>
+
+    <div class="svc-card reveal">
+      <div class="svc-photo"><img src="img/service-flyer.jpg" alt="朝の街頭で通行人にチラシを手渡すスタッフ" loading="lazy"></div>
+      <div class="svc-body">
+        <p class="svc-num">SERVICE 01</p>
+        <h3>早朝ジョウネツチラシ配り</h3>
+        <p>通勤・通学で人が最も動く早朝の時間帯に、店舗周辺で手渡しのチラシ配布を行います。ただ配るのではなく、挨拶と一言を添えて「顔の見える配布」をするのがジョウネツ流です。</p>
+        <ul class="svc-points">
+          <li>商圏半径500m以内に集中配布</li>
+          <li>毎朝同じ場所に立ち、街の顔になる</li>
+          <li>配布数・反応を毎回レポート</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-card reveal">
+      <div class="svc-photo"><img src="img/service-visit.jpg" alt="オフィスビルの前で企業担当者と話すスタッフ" loading="lazy"></div>
+      <div class="svc-body">
+        <p class="svc-num">SERVICE 02</p>
+        <h3>ジョウネツ法人訪問</h3>
+        <p>お店の周辺企業を一軒一軒直接訪問し、ランチ利用・宴会・お弁当のまとめ注文などを直接ご提案。これまで1店舗のために最大400社を訪問した実績があります。</p>
+        <ul class="svc-points">
+          <li>周辺企業へ最大数百件の直接訪問</li>
+          <li>宴会・まとめ注文など法人需要を開拓</li>
+          <li>営業経験者が貴店の「営業部長」に</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="svc-card reveal">
+      <div class="svc-photo"><img src="img/service-research.jpg" alt="飲食店街で街頭ヒアリングを行うスタッフ" loading="lazy"></div>
+      <div class="svc-body">
+        <p class="svc-num">SERVICE 03</p>
+        <h3>マーケティング支援・調査代行</h3>
+        <p>街頭アンケートやお客様ヒアリングを代行し、「なぜ来店したのか」「なぜ来ないのか」を生の声で集めます。感覚ではなくリアルなデータで、次の一手を一緒に考えます。</p>
+        <ul class="svc-points">
+          <li>商圏内の生の声を収集・分析</li>
+          <li>メニュー・価格・導線の改善提案</li>
+          <li>施策の効果検証までサポート</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="results" id="results">
+  <div class="inner">
+    <p class="label reveal">Results</p>
+    <h2 class="reveal">熱は、<span class="brush-fire yura">数字</span>になる。</h2>
+    <figure class="result-photo reveal">
+      <img src="img/result-queue.jpg" alt="夜のらーめん店の前にできた行列(イメージ)" loading="lazy">
+      <figcaption>行列は、偶然じゃなく足でつくる。(写真はイメージ)</figcaption>
+    </figure>
+    <div class="results-grid">
+      <div class="result-card reveal">
+        <p class="result-meta">千葉県松戸市｜らーめん N様</p>
+        <p class="result-big">開店前に<span class="hot"><span class="en num" data-to="18">0</span>名の行列</span></p>
+        <p>周辺企業への訪問営業で新規顧客を開拓。話題が話題を呼び、行列のできる店に。現在は2号店の出店を計画中です。</p>
+      </div>
+      <div class="result-card reveal">
+        <p class="result-meta">東京都港区｜カレー E様</p>
+        <p class="result-big">1回の注文で<span class="hot">最大<span class="en num" data-to="34">0</span>食</span></p>
+        <p>オフィス街の企業400社を訪問し、ランチのまとめ注文を開拓。法人需要という新しい売上の柱ができました。</p>
+      </div>
+      <div class="result-card reveal">
+        <p class="result-meta">東京都新宿区｜居酒屋 T様</p>
+        <p class="result-big">開始1ヶ月で<span class="brush-fire">黒字化</span></p>
+        <p>200件以上の法人訪問で宴会需要を獲得。一度来たお客様が常連になり、安定した売上基盤が生まれました。</p>
+      </div>
+      <div class="result-card reveal">
+        <p class="result-meta">東京都渋谷区｜タコス L様</p>
+        <p class="result-big">来店も<span class="hot">フォロワーも増加</span></p>
+        <p>法人100件・個人宅100件を訪問。リアルの接点がSNSのフォローにもつながり、オンラインとオフラインの相乗効果を実現しました。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REASONS ============ -->
+<section>
+  <div class="inner">
+    <p class="label reveal">Why Jounetsu</p>
+    <h2 class="reveal">選ばれる、<br>3つの理由。</h2>
+    <div class="reason reveal">
+      <span class="reason-num">01</span>
+      <div>
+        <h3>商圏500mで、誰にも負けない認知をつくる</h3>
+        <p>広く浅くではなく、来店できる距離の人に深く届ける。半径500mの中での認知度なら、大手チェーンの広告にも負けません。</p>
+      </div>
+    </div>
+    <div class="reason reveal">
+      <span class="reason-num">02</span>
+      <div>
+        <h3>誰もやらないから、圧倒的に差別化できる</h3>
+        <p>毎朝チラシを手渡しする店、社員が直接挨拶に来る店。そんなお店は商圏にほぼ存在しません。「あの店、最近よく見るね」をつくれるのは私たちだけです。</p>
+      </div>
+    </div>
+    <div class="reason reveal">
+      <span class="reason-num">03</span>
+      <div>
+        <h3>営業と飲食のプロが、専属で並走する</h3>
+        <p>担当するのは営業・飲食業界の経験者。現場を知っているから、机上の空論ではない提案ができます。貴店専属の「外回り部隊」としてご活用ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHILOSOPHY ============ -->
+<section class="philosophy">
+  <div class="embers"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="inner">
+    <p class="label reveal" style="justify-content:center">Philosophy</p>
+    <p class="big reveal"><span class="tategaki">人の熱さは、<br><em class="brush-fire" style="font-family:'Yuji Syuku',serif">心を動かす。</em></span></p>
+    <p class="reveal">アルゴリズムは毎年変わります。広告費は上がり続けます。それでも、<strong>「人が人に本気で伝える」ことの力だけは、何十年も変わっていません。</strong></p>
+    <p class="reveal">私たちは、お店と人を本質的に、直接つなぐ。遠回りに見えて、いちばん確実なこの方法に、社名と人生を賭けています。</p>
+  </div>
+</section>
+
+<!-- ============ FLOW ============ -->
+<section>
+  <div class="inner">
+    <p class="label reveal">Flow</p>
+    <h2 class="reveal">ご依頼の流れ</h2>
+    <div class="flow-step reveal">
+      <span class="flow-num">1</span>
+      <div><h3>無料相談</h3><p>お電話またはフォームからご連絡ください。現状のお悩みをじっくり伺います。</p></div>
+    </div>
+    <div class="flow-step reveal">
+      <span class="flow-num">2</span>
+      <div><h3>商圏調査・プランご提案</h3><p>店舗周辺を実際に歩いて調査し、貴店に最適な施策とお見積りをご提案します。</p></div>
+    </div>
+    <div class="flow-step reveal">
+      <span class="flow-num">3</span>
+      <div><h3>実行</h3><p>専属担当が現場に立ちます。チラシ配布・法人訪問の様子は随時ご報告します。</p></div>
+    </div>
+    <div class="flow-step reveal">
+      <span class="flow-num">4</span>
+      <div><h3>振り返り・改善</h3><p>反応データをもとに毎月振り返り。やりっぱなしにせず、次の一手まで一緒に考えます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="inner">
+    <p class="label reveal" style="color:#fff;justify-content:center">Contact</p>
+    <h2 class="reveal">まずは、お店の悩みを<br>聞かせてください。</h2>
+    <p class="lead reveal">相談は無料です。「うちの商圏でも効果ある?」といった<br>ご質問だけでも歓迎します。</p>
+    <a class="btn btn-dark reveal" href="mailto:s.takigami@nevok-jp.com">メールで相談する</a>
+    <a class="tel reveal" href="tel:09027740290">090-2774-0290</a>
+    <p class="tel-note reveal">受付 9:00–19:00（土日も対応）</p>
+  </div>
+</section>
+
+<!-- ============ RECRUIT ============ -->
+<section class="recruit">
+  <div class="inner">
+    <p class="label reveal" style="justify-content:center">Recruit</p>
+    <h2 class="reveal">一緒に、街を<br><span class="brush-fire yura">熱くする仲間</span>を募集中。</h2>
+    <p class="reveal">朝の街角に立ち、自分の声と足でお店の売上をつくる。泥臭いけれど、結果がすべて自分の手柄になる仕事です。新卒・中途ともに募集しています。</p>
+    <a class="btn btn-ghost reveal" href="mailto:s.takigami@nevok-jp.com?subject=採用について">採用情報を問い合わせる</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="inner">
+    <p class="logo">NEVOK<span>.</span></p>
+    <div class="foot-info">
+      株式会社NEVOK<br>
+      東京都新宿区西新宿<br>
+      TEL: 090-2774-0290<br>
+      MAIL: s.takigami@nevok-jp.com
+    </div>
+    <div class="foot-links">
+      <a href="#services">サービス</a>
+      <a href="#results">実績</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="#">プライバシーポリシー</a>
+    </div>
+    <p class="copy">© 2026 NEVOK Inc. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- fixed bottom CTA (mobile only) -->
+<div class="bottom-cta">
+  <a class="btn btn-fire" href="#contact">無料で相談する</a>
+  <a class="btn-tel" href="tel:09027740290">📞</a>
+</div>
+
+<script>
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('on');
+    e.target.querySelectorAll('.num[data-to]').forEach(countUp);
+    if(e.target.matches('.num[data-to]'))countUp(e.target);
+    io.unobserve(e.target);
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal,.stamp').forEach(el=>io.observe(el));
+
+function countUp(el){
+  if(el.dataset.done)return;el.dataset.done=1;
+  const to=+el.dataset.to,dur=1300,t0=performance.now();
+  (function f(t){
+    const p=Math.min((t-t0)/dur,1);
+    el.textContent=Math.round(to*(1-Math.pow(1-p,3)));
+    if(p<1)requestAnimationFrame(f);
+  })(t0);
+}
+</script>
+</body>
+</html>
