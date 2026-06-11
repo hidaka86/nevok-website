@@ -405,6 +405,14 @@ header.hdr-on{box-shadow:0 10px 34px rgba(255,77,28,.14);border-bottom-color:rgb
   border:1px solid rgba(255,138,0,.32);
   box-shadow:0 -16px 40px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,179,71,.22);
   margin-bottom:22px;overflow:hidden;
+  transform:scale(calc(1 - .06*var(--p,0)));
+  transform-origin:50% 0;
+  will-change:transform;
+}
+.stack-card::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:#150702;opacity:calc(var(--p,0)*.6);
+  pointer-events:none;transition:none;z-index:3;
 }
 .stack-card:nth-child(1){top:84px}
 .stack-card:nth-child(2){top:96px}
@@ -865,17 +873,21 @@ const io=new IntersectionObserver(es=>{
 document.querySelectorAll('.reveal,.stamp').forEach(el=>io.observe(el));
 
 const bar=document.querySelector('.progress'),hdr=document.querySelector('header'),bcta=document.querySelector('.bottom-cta');
+const stackCards=[...document.querySelectorAll('.stack-card')];
 function onScroll(){
   const max=document.documentElement.scrollHeight-innerHeight;
   bar.style.transform='scaleX('+(max>0?scrollY/max:0)+')';
   hdr.classList.toggle('hdr-on',scrollY>40);
   bcta.classList.toggle('show',scrollY>innerHeight*0.75);
+  for(let i=0;i<stackCards.length-1;i++){
+    const self=stackCards[i].getBoundingClientRect();
+    const next=stackCards[i+1].getBoundingClientRect();
+    const p=Math.min(1,Math.max(0,(self.bottom-next.top)/self.height));
+    stackCards[i].style.setProperty('--p',p.toFixed(3));
+  }
 }
-let ticking=false;
-addEventListener('scroll',()=>{
-  if(ticking)return;ticking=true;
-  requestAnimationFrame(()=>{onScroll();ticking=false});
-},{passive:true});
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('resize',onScroll,{passive:true});
 onScroll();
 
 function countUp(el){
