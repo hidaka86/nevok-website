@@ -325,6 +325,27 @@ header{
 .reason h3{font-size:18px;font-weight:900;margin-bottom:8px;line-height:1.5}
 .reason p{color:var(--grey);font-size:14px}
 
+/* ===== reasons(白×朱の反転セクション)===== */
+.reasons{
+  background:
+    radial-gradient(ellipse 90% 50% at 85% 0%,rgba(255,77,28,.08),transparent 60%),
+    var(--white);
+  color:#221409;
+  border-radius:30px;margin:18px 10px;
+  box-shadow:0 20px 60px rgba(255,90,0,.08);
+}
+.reasons .label{color:#d92b12}
+.reasons .label::before{background:#d92b12}
+.reasons h2{color:#221409}
+.reasons .ink{font-family:'Reggae One',serif;font-weight:400;letter-spacing:.04em;color:#d92b12}
+.reasons .reason h3{color:#221409}
+.reasons .reason p{color:#70604f}
+.reasons .stamp{top:26px;right:22px;opacity:0}
+@media(min-width:768px){
+  .reasons{margin:32px 24px;border-radius:40px}
+  .reasons .stamp{top:48px;right:6%}
+}
+
 /* ===== philosophy ===== */
 .philosophy{
   text-align:center;
@@ -567,10 +588,11 @@ footer .logo{font-size:20px;margin-bottom:20px}
 </section>
 
 <!-- ============ REASONS ============ -->
-<section>
+<section class="reasons">
+  <span class="stamp">本気</span>
   <div class="inner">
     <p class="label reveal">Why Jounetsu</p>
-    <h2 class="reveal">選ばれる、<br>3つの理由。</h2>
+    <h2 class="reveal">選ばれる、<br><span class="ink">3つの理由。</span></h2>
     <div class="reason reveal">
       <span class="reason-num">01</span>
       <div>
