@@ -259,9 +259,16 @@ header.hdr-on{box-shadow:0 10px 34px rgba(255,77,28,.14);border-bottom-color:rgb
   background:rgba(13,10,8,.5);
 }
 .problem-card+.problem-card{margin-top:14px}
-.problem-card h3{font-size:17px;font-weight:700;margin-bottom:8px;display:flex;gap:10px;align-items:baseline}
-.problem-card h3::before{content:"✕";color:var(--fire);font-weight:900;flex-shrink:0}
+.problem-card h3{font-size:17px;font-weight:700;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+.problem-card h3::before{
+  content:"✕";color:#ff3b1f;font-weight:900;flex-shrink:0;
+  width:24px;height:24px;border:1.5px solid rgba(255,59,31,.55);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+  margin-top:3px;box-shadow:0 0 12px rgba(255,59,31,.25);
+}
 .problem-card p{color:var(--grey);font-size:14px}
+.problem-card.reveal:nth-of-type(2){transition-delay:.12s}
+.problem-card.reveal:nth-of-type(3){transition-delay:.24s}
 .problem-answer{
   margin-top:36px;text-align:center;
   font-size:clamp(20px,5.6vw,30px);font-weight:900;line-height:1.6;
@@ -336,7 +343,15 @@ header.hdr-on{box-shadow:0 10px 34px rgba(255,77,28,.14);border-bottom-color:rgb
 .result-card{
   border-radius:18px;border:1px solid var(--line);padding:26px 22px;
   background:rgba(13,10,8,.55);margin-top:18px;
+  position:relative;overflow:hidden;
 }
+.result-card::before{
+  content:"";position:absolute;top:0;left:0;width:52px;height:3px;
+  background:var(--grad);border-radius:0 0 4px 0;
+}
+.result-card.reveal:nth-child(2){transition-delay:.1s}
+.result-card.reveal:nth-child(3){transition-delay:.2s}
+.result-card.reveal:nth-child(4){transition-delay:.3s}
 .result-card .result-meta{font-size:12px;color:var(--fire2);letter-spacing:.12em;margin-bottom:10px;font-weight:700}
 .result-card .result-big{
   font-size:clamp(24px,7vw,34px);font-weight:900;line-height:1.45;margin-bottom:10px;color:var(--white);
@@ -412,6 +427,25 @@ header.hdr-on{box-shadow:0 10px 34px rgba(255,77,28,.14);border-bottom-color:rgb
 .philosophy p+p{margin-top:1em}
 .philosophy p strong{color:var(--white)}
 
+/* 代表写真 */
+.ceo{margin:44px auto 0;max-width:430px;position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);text-align:left}
+.ceo img{width:100%;display:block;filter:saturate(.88) contrast(1.05)}
+.ceo::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(255,90,0,.12),transparent 30%,rgba(13,10,8,.25) 52%,rgba(13,10,8,.96) 100%);
+}
+.ceo figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px}
+.ceo-copy{
+  font-family:'Reggae One',serif;font-weight:400;font-size:24px;line-height:1.6;
+  margin-bottom:10px;text-shadow:0 2px 14px rgba(0,0,0,.6);
+}
+.ceo-name{font-size:15px;font-weight:700;font-family:'Yuji Syuku',serif}
+.ceo-name span{
+  display:block;font-family:'Noto Sans JP',sans-serif;font-size:10.5px;font-weight:500;
+  color:var(--grey);letter-spacing:.18em;margin-bottom:2px;
+}
+
 /* ===== flow ===== */
 .flow-step{
   display:flex;gap:16px;align-items:flex-start;
@@ -433,7 +467,14 @@ header.hdr-on{box-shadow:0 10px 34px rgba(255,77,28,.14);border-bottom-color:rgb
 .contact{
   background:var(--grad);color:#1a0d05;text-align:center;
   border-radius:28px 28px 0 0;
+  position:relative;overflow:hidden;
 }
+.contact::before{
+  content:"燃";position:absolute;right:-22px;bottom:-46px;z-index:0;
+  font-family:'Yuji Syuku',serif;font-size:230px;line-height:1;
+  color:rgba(255,255,255,.09);pointer-events:none;
+}
+.contact .inner{position:relative;z-index:1}
 .contact h2{color:#fff}
 .contact .lead{color:rgba(255,255,255,.92);margin-bottom:30px}
 .contact .btn-dark{
@@ -541,7 +582,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <!-- ============ PROBLEM ============ -->
 <section class="problem">
   <div class="inner">
-    <p class="label reveal">Problem</p>
+    <p class="label reveal">01 / Problem</p>
     <h2 class="reveal">こんな悔しさ、<br>ありませんか。</h2>
     <div class="problem-card reveal">
       <h3>味には自信があるのに、知られていない</h3>
@@ -562,7 +603,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <!-- ============ MISSION ============ -->
 <section class="mission">
   <div class="inner">
-    <p class="label reveal" style="justify-content:center">Mission</p>
+    <p class="label reveal" style="justify-content:center">02 / Mission</p>
     <blockquote class="reveal fude">地域をお店と共に<br><em class="fude">情熱的に熱くする。</em></blockquote>
     <p class="reveal">人は、五感で受け取った情報を長く記憶します。手渡されたチラシの温度、目を見て語られた一言。<span class="uline"><strong>画面越しの広告には決して出せない「人の熱」</strong></span>こそが、人の心を動かし、足を運ばせる。</p>
     <p class="reveal">私たちNEVOKは、その信念のもと、デジタル全盛の時代にあえて「足で稼ぐ」マーケティングを貫いています。</p>
@@ -572,7 +613,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <!-- ============ SERVICES ============ -->
 <section id="services">
   <div class="inner">
-    <p class="label reveal">Service</p>
+    <p class="label reveal">03 / Service</p>
     <h2 class="reveal">やることはシンプル。<br><span class="brush-fire">本気で、直接、伝える。</span></h2>
     <p class="lead reveal">ジョウネツのサービスは、お店の商圏──半径500m以内に集中投下するのが特徴です。来られる距離にいる人だけに、全力で伝えます。</p>
 
@@ -623,7 +664,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <!-- ============ RESULTS ============ -->
 <section class="results" id="results">
   <div class="inner">
-    <p class="label reveal">Results</p>
+    <p class="label reveal">04 / Results</p>
     <h2 class="reveal">熱は、<span class="brush-fire yura">数字</span>になる。</h2>
     <figure class="result-photo reveal">
       <img src="img/result-queue.jpg" alt="夜のらーめん店の前にできた行列(イメージ)" loading="lazy">
@@ -658,7 +699,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <section class="reasons">
   <span class="stamp">本気</span>
   <div class="inner">
-    <p class="label reveal">Why Jounetsu</p>
+    <p class="label reveal">05 / Why Jounetsu</p>
     <h2 class="reveal">選ばれる、<br><span class="brush-fire">3つの理由。</span></h2>
     <div class="stack">
       <div class="stack-card">
@@ -687,17 +728,24 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <section class="philosophy">
   <div class="embers"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="inner">
-    <p class="label reveal" style="justify-content:center">Philosophy</p>
+    <p class="label reveal" style="justify-content:center">06 / Philosophy</p>
     <p class="big reveal"><span class="tategaki">人の熱さは、<br><em class="brush-fire" style="font-family:'Yuji Syuku',serif">心を動かす。</em></span></p>
     <p class="reveal">アルゴリズムは毎年変わります。広告費は上がり続けます。それでも、<strong>「人が人に本気で伝える」ことの力だけは、何十年も変わっていません。</strong></p>
     <p class="reveal">私たちは、お店と人を本質的に、直接つなぐ。遠回りに見えて、いちばん確実なこの方法に、社名と人生を賭けています。</p>
+    <figure class="ceo reveal">
+      <img src="img/takigami.jpg" alt="街頭でチラシを手渡す代表・瀧上" loading="lazy">
+      <figcaption>
+        <p class="ceo-copy">誰よりも先に、<br>街頭に立つ。</p>
+        <p class="ceo-name"><span>株式会社NEVOK 代表</span>瀧上</p>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
 <!-- ============ FLOW ============ -->
 <section>
   <div class="inner">
-    <p class="label reveal">Flow</p>
+    <p class="label reveal">07 / Flow</p>
     <h2 class="reveal">ご依頼の流れ</h2>
     <div class="flow-step reveal">
       <span class="flow-num">1</span>
@@ -721,7 +769,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <!-- ============ CONTACT ============ -->
 <section class="contact" id="contact">
   <div class="inner">
-    <p class="label reveal" style="color:#fff;justify-content:center">Contact</p>
+    <p class="label reveal" style="color:#fff;justify-content:center">08 / Contact</p>
     <h2 class="reveal">まずは、お店の悩みを<br>聞かせてください。</h2>
     <p class="lead reveal">相談は無料です。「うちの商圏でも効果ある?」といった<br>ご質問だけでも歓迎します。</p>
     <a class="btn btn-dark reveal" href="mailto:s.takigami@nevok-jp.com">メールで相談する</a>
@@ -733,7 +781,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
 <!-- ============ RECRUIT ============ -->
 <section class="recruit">
   <div class="inner">
-    <p class="label reveal" style="justify-content:center">Recruit</p>
+    <p class="label reveal" style="justify-content:center">09 / Recruit</p>
     <h2 class="reveal">一緒に、街を<br><span class="brush-fire yura">熱くする仲間</span>を募集中。</h2>
     <p class="reveal">朝の街角に立ち、自分の声と足でお店の売上をつくる。泥臭いけれど、結果がすべて自分の手柄になる仕事です。新卒・中途ともに募集しています。</p>
     <a class="btn btn-ghost reveal" href="mailto:s.takigami@nevok-jp.com?subject=採用について">採用情報を問い合わせる</a>
