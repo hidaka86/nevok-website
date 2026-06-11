@@ -194,17 +194,22 @@ header{
   pointer-events:none;
 }
 .hero-badge{
-  display:inline-flex;align-items:center;gap:0;white-space:nowrap;
-  font-size:12.5px;font-weight:700;letter-spacing:.08em;
-  border:1px solid rgba(255,138,0,.55);border-radius:999px;
-  padding:0;margin-bottom:22px;overflow:hidden;
-  background:rgba(13,10,8,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  display:inline-block;position:relative;white-space:nowrap;
+  font-size:13px;font-weight:700;letter-spacing:.14em;
+  color:var(--amber);padding:10px 18px;margin-bottom:24px;
+  background:rgba(13,10,8,.4);
 }
+.hero-badge::before,.hero-badge::after{
+  content:"";position:absolute;width:13px;height:13px;
+  border:1.5px solid var(--fire2);
+}
+.hero-badge::before{top:0;left:0;border-right:none;border-bottom:none}
+.hero-badge::after{bottom:0;right:0;border-left:none;border-top:none}
 .hero-badge .badge-em{
-  background:var(--grad);color:#fff;padding:7px 14px;font-weight:900;
+  color:#fff;font-weight:900;
+  background:linear-gradient(transparent 62%,rgba(255,90,0,.6) 62%);
+  padding:0 1px;
 }
-.hero-badge{padding-right:14px}
-.hero-badge .badge-em{margin-right:12px}
 .hero h1{
   font-family:'Reggae One',serif;font-weight:400;
   font-size:clamp(36px,10.5vw,68px);line-height:1.38;
@@ -462,6 +467,26 @@ header.hdr-on{box-shadow:0 10px 34px rgba(255,77,28,.14);border-bottom-color:rgb
 .philosophy p+p{margin-top:1em}
 .philosophy p strong{color:var(--white)}
 
+/* 一文字ずつ滲み出る縦書き */
+.fude-em{font-family:'Yuji Syuku',serif;font-style:normal}
+.tategaki .ch{
+  opacity:0;filter:blur(10px);
+  transition:opacity .9s ease,filter .9s ease;
+  transition-delay:calc(var(--d)*.13s);
+}
+.big.reveal.on .ch{opacity:1;filter:blur(0)}
+
+/* 手紙のような一行 */
+.ph-letter{margin-top:36px}
+.philosophy .ph-line{
+  text-align:center;font-size:16px;line-height:2.15;
+  color:var(--grey);margin:0 auto 20px;max-width:32em;
+}
+.philosophy .ph-line strong{color:var(--white)}
+.philosophy .ph-punch{font-size:clamp(26px,7vw,36px);margin:34px auto 30px;line-height:1.4}
+.ph-line.d1{transition-delay:.18s}
+@media(prefers-reduced-motion:reduce){.tategaki .ch{transition:none;opacity:1;filter:none}}
+
 /* 代表写真 */
 .ceo{margin:44px auto 0;max-width:430px;position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);text-align:left}
 .ceo img{width:100%;display:block;filter:saturate(.88) contrast(1.05)}
@@ -602,7 +627,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
   <div class="embers"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <span class="stamp">情熱</span>
   <div class="inner">
-    <p class="hero-badge"><span class="badge-em">飲食店専門</span>リアルマーケティング</p>
+    <p class="hero-badge"><span class="badge-em">飲食店専門</span>のリアルマーケティング</p>
     <h1>その味への熱意、<br><span class="brush-fire yura glow">街中に</span>届けます。</h1>
     <p><strong>味に自信のある、飲食店オーナーさんへ。</strong><br>
     SNSの「いいね」では、お店の前に行列はできない。私たちは<strong>商圏500mを足で回り、人の熱で直接お客様を連れてくる</strong>、リアルマーケティング集団です。</p>
@@ -771,9 +796,14 @@ footer .logo{font-size:20px;margin-bottom:20px}
   <div class="embers"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="inner">
     <p class="label reveal" style="justify-content:center">06 / Philosophy</p>
-    <p class="big reveal"><span class="tategaki">人の熱さは、<br><em class="brush-fire" style="font-family:'Yuji Syuku',serif">心を動かす。</em></span></p>
-    <p class="reveal">アルゴリズムは毎年変わります。広告費は上がり続けます。それでも、<strong>「人が人に本気で伝える」ことの力だけは、何十年も変わっていません。</strong></p>
-    <p class="reveal">私たちは、お店と人を本質的に、直接つなぐ。遠回りに見えて、いちばん確実なこの方法に、社名と人生を賭けています。</p>
+    <p class="big reveal"><span class="tategaki"><span class="ch" style="--d:0">人</span><span class="ch" style="--d:1">の</span><span class="ch" style="--d:2">熱</span><span class="ch" style="--d:3">さ</span><span class="ch" style="--d:4">は</span><span class="ch" style="--d:5">、</span><br><em class="fude-em"><span class="ch" style="--d:7">心</span><span class="ch" style="--d:8">を</span><span class="ch" style="--d:9">動</span><span class="ch" style="--d:10">か</span><span class="ch" style="--d:11">す</span><span class="ch" style="--d:12">。</span></em></span></p>
+    <div class="ph-letter">
+      <p class="ph-line reveal">アルゴリズムは、毎年変わる。</p>
+      <p class="ph-line reveal d1">広告費は、上がり続ける。</p>
+      <p class="ph-line ph-punch reveal"><span class="brush-fire">それでも。</span></p>
+      <p class="ph-line reveal">人が、人に、本気で伝える。<br>その力だけは、何十年も変わらない。</p>
+      <p class="ph-line reveal d1">私たちは、お店と人を直接つなぐ。<br>遠回りに見えて、いちばん確実なこの道に、<br><strong>社名と人生を賭けています。</strong></p>
+    </div>
     <figure class="ceo reveal">
       <img src="img/takigami-grade.jpg" alt="街頭でチラシを手渡す代表・瀧上" loading="lazy">
       <figcaption>
