@@ -314,35 +314,42 @@ header{
 }
 .result-card p{color:var(--grey);font-size:13.5px}
 
-/* ===== reasons ===== */
-.reason{display:flex;gap:18px;margin-top:30px;align-items:flex-start}
-.reason-num{
-  font-family:'Oswald',sans-serif;font-weight:700;font-size:40px;line-height:1;
-  background:var(--grad);-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;flex-shrink:0;
-  min-width:52px;
-}
-.reason h3{font-size:18px;font-weight:900;margin-bottom:8px;line-height:1.5}
-.reason p{color:var(--grey);font-size:14px}
-
-/* ===== reasons(白×朱の反転セクション)===== */
+/* ===== reasons(深紅×スタックカード)===== */
 .reasons{
   background:
-    radial-gradient(ellipse 90% 50% at 85% 0%,rgba(255,77,28,.08),transparent 60%),
-    var(--white);
-  color:#221409;
-  border-radius:30px;margin:18px 10px;
-  box-shadow:0 20px 60px rgba(255,90,0,.08);
+    radial-gradient(ellipse 80% 45% at 12% 6%,rgba(255,77,28,.25),transparent 55%),
+    radial-gradient(ellipse 70% 40% at 95% 85%,rgba(255,138,0,.16),transparent 60%),
+    linear-gradient(180deg,#170502 0%,#310b02 55%,#170502 100%);
 }
-.reasons .label{color:#d92b12}
-.reasons .label::before{background:#d92b12}
-.reasons h2{color:#221409}
-.reasons .ink{font-family:'Reggae One',serif;font-weight:400;letter-spacing:.04em;color:#d92b12}
-.reasons .reason h3{color:#221409}
-.reasons .reason p{color:#70604f}
-.reasons .stamp{top:26px;right:22px;opacity:0}
+.reasons .stamp{top:26px;right:18px;opacity:0}
+.stack{margin-top:14px}
+.stack-card{
+  position:sticky;border-radius:22px;padding:30px 24px 34px;
+  background:rgba(18,7,3,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,138,0,.32);
+  box-shadow:0 -14px 44px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,179,71,.22);
+  margin-bottom:22px;overflow:hidden;
+}
+.stack-card:nth-child(1){top:84px}
+.stack-card:nth-child(2){top:96px}
+.stack-card:nth-child(3){top:108px}
+.stack-card:last-child{margin-bottom:0}
+.stack-num{
+  position:absolute;top:2px;right:12px;line-height:1;
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:112px;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,138,0,.42);
+  pointer-events:none;
+}
+.stack-kw{
+  font-size:clamp(27px,7.8vw,42px);line-height:1.45;margin-bottom:14px;
+  position:relative;z-index:1;
+}
+.stack-card h3{font-size:17px;font-weight:900;margin-bottom:10px;color:var(--white);line-height:1.55;position:relative;z-index:1}
+.stack-card .stack-txt{color:var(--grey);font-size:14px;position:relative;z-index:1}
 @media(min-width:768px){
-  .reasons{margin:32px 24px;border-radius:40px}
+  .stack-card{padding:42px 40px 46px}
+  .stack-num{font-size:150px}
   .reasons .stamp{top:48px;right:6%}
 }
 
@@ -592,26 +599,25 @@ footer .logo{font-size:20px;margin-bottom:20px}
   <span class="stamp">本気</span>
   <div class="inner">
     <p class="label reveal">Why Jounetsu</p>
-    <h2 class="reveal">選ばれる、<br><span class="ink">3つの理由。</span></h2>
-    <div class="reason reveal">
-      <span class="reason-num">01</span>
-      <div>
+    <h2 class="reveal">選ばれる、<br><span class="brush-fire">3つの理由。</span></h2>
+    <div class="stack">
+      <div class="stack-card">
+        <span class="stack-num">01</span>
+        <p class="stack-kw brush-fire">500mに、全集中。</p>
         <h3>商圏500mで、誰にも負けない認知をつくる</h3>
-        <p>広く浅くではなく、来店できる距離の人に深く届ける。半径500mの中での認知度なら、大手チェーンの広告にも負けません。</p>
+        <p class="stack-txt">広く浅くではなく、来店できる距離の人に深く届ける。半径500mの中での認知度なら、大手チェーンの広告にも負けません。</p>
       </div>
-    </div>
-    <div class="reason reveal">
-      <span class="reason-num">02</span>
-      <div>
-        <h3>誰もやらないから、圧倒的に差別化できる</h3>
-        <p>毎朝チラシを手渡しする店、社員が直接挨拶に来る店。そんなお店は商圏にほぼ存在しません。「あの店、最近よく見るね」をつくれるのは私たちだけです。</p>
+      <div class="stack-card">
+        <span class="stack-num">02</span>
+        <p class="stack-kw brush-fire">誰も、やってない。</p>
+        <h3>だから圧倒的に差別化できる</h3>
+        <p class="stack-txt">毎朝チラシを手渡しする店、社員が直接挨拶に来る店。そんなお店は商圏にほぼ存在しません。「あの店、最近よく見るね」をつくれるのは私たちだけです。</p>
       </div>
-    </div>
-    <div class="reason reveal">
-      <span class="reason-num">03</span>
-      <div>
-        <h3>営業と飲食のプロが、専属で並走する</h3>
-        <p>担当するのは営業・飲食業界の経験者。現場を知っているから、机上の空論ではない提案ができます。貴店専属の「外回り部隊」としてご活用ください。</p>
+      <div class="stack-card">
+        <span class="stack-num">03</span>
+        <p class="stack-kw brush-fire">プロが、並走する。</p>
+        <h3>営業と飲食の経験者が、貴店専属で</h3>
+        <p class="stack-txt">現場を知っているから、机上の空論ではない提案ができます。貴店専属の「外回り部隊」としてご活用ください。</p>
       </div>
     </div>
   </div>
