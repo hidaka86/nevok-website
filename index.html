@@ -23,7 +23,7 @@
   --grad:linear-gradient(135deg,#ff4d1c 0%,#ff8a00 100%);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{
   font-family:'Noto Sans JP',sans-serif;
   background:var(--bg);
@@ -31,6 +31,17 @@ body{
   line-height:1.85;
   overflow-x:hidden;
   font-size:15px;
+}
+@supports(overflow:clip){html,body{overflow-x:clip}}
+/* フィルムグレイン(質感) */
+body::after{
+  content:"";position:fixed;inset:0;z-index:300;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* スクロール進捗バー */
+.progress{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:150;
+  background:var(--grad);transform:scaleX(0);transform-origin:0 50%;
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -200,6 +211,22 @@ header{
   letter-spacing:.02em;margin-bottom:24px;
 }
 .hero .stamp{top:78px;right:14px;width:64px;height:80px;font-size:26px}
+.scroll-cue{
+  position:absolute;bottom:96px;left:50%;transform:translateX(-50%);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:.34em;
+  color:rgba(255,179,71,.85);
+}
+.scroll-cue i{
+  width:1px;height:38px;overflow:hidden;position:relative;
+  background:rgba(255,179,71,.18);
+}
+.scroll-cue i::after{
+  content:"";position:absolute;left:0;top:-100%;width:100%;height:100%;
+  background:var(--grad);animation:cue-drop 1.8s cubic-bezier(.6,0,.4,1) infinite;
+}
+@keyframes cue-drop{0%{top:-100%}55%,100%{top:100%}}
+header.hdr-on{box-shadow:0 10px 34px rgba(255,77,28,.14);border-bottom-color:rgba(255,138,0,.3)}
 @media(min-width:768px){.hero .stamp{top:140px;right:10%}}
 .hero h1 .fire{
   background:var(--grad);
@@ -214,7 +241,13 @@ header{
   font-weight:700;font-size:15px;letter-spacing:.06em;
   padding:17px 28px;border-radius:999px;transition:transform .2s,box-shadow .2s;
 }
-.btn-fire{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(255,77,28,.45)}
+.btn-fire{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(255,77,28,.45);position:relative;overflow:hidden}
+.btn-fire::after{
+  content:"";position:absolute;top:0;bottom:0;left:-70%;width:45%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:skewX(-18deg);animation:shine 3.4s ease-in-out infinite;
+}
+@keyframes shine{0%,55%{left:-70%}100%{left:140%}}
 .btn-fire:active{transform:scale(.97)}
 .btn-ghost{border:1px solid rgba(255,246,239,.3);color:var(--white)}
 .btn .arrow{font-family:'Oswald',sans-serif}
@@ -382,9 +415,12 @@ header{
 /* ===== flow ===== */
 .flow-step{
   display:flex;gap:16px;align-items:flex-start;
-  padding:20px 0;border-bottom:1px solid rgba(255,138,0,.12);
+  padding:20px 0;position:relative;
 }
-.flow-step:last-child{border-bottom:none}
+.flow-step:not(:last-child)::before{
+  content:"";position:absolute;left:20px;top:64px;bottom:-22px;width:2px;
+  background:linear-gradient(180deg,rgba(255,138,0,.5),rgba(255,138,0,.05));
+}
 .flow-num{
   width:42px;height:42px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
@@ -452,10 +488,13 @@ footer .logo{font-size:20px;margin-bottom:20px}
   .results-grid{margin-top:26px}
   .bottom-cta{display:none}
   footer{padding-bottom:48px}
+  .scroll-cue{bottom:22px}
 }
 </style>
 </head>
 <body>
+
+<div class="progress" aria-hidden="true"></div>
 
 <header>
   <a class="logo" href="#top">NEVOK<span>.</span></a>
@@ -476,6 +515,7 @@ footer .logo{font-size:20px;margin-bottom:20px}
       <a class="btn btn-ghost" href="#results">導入実績を見る</a>
     </div>
   </div>
+  <div class="scroll-cue"><i></i>SCROLL</div>
 </section>
 
 <!-- ============ PROBLEM ============ -->
@@ -717,6 +757,18 @@ const io=new IntersectionObserver(es=>{
   });
 },{threshold:.12});
 document.querySelectorAll('.reveal,.stamp').forEach(el=>io.observe(el));
+
+const bar=document.querySelector('.progress'),hdr=document.querySelector('header');
+let ticking=false;
+addEventListener('scroll',()=>{
+  if(ticking)return;ticking=true;
+  requestAnimationFrame(()=>{
+    const max=document.documentElement.scrollHeight-innerHeight;
+    bar.style.transform='scaleX('+(max>0?scrollY/max:0)+')';
+    hdr.classList.toggle('hdr-on',scrollY>40);
+    ticking=false;
+  });
+},{passive:true});
 
 function countUp(el){
   if(el.dataset.done)return;el.dataset.done=1;
